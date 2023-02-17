@@ -1,9 +1,6 @@
 from rc4 import *
 
 from tkinter import *
-import time
-import tkinter.messagebox as tkMessageBox
-import tkinter.ttk as ttk
 import tkinter.filedialog as filedialog
 
 root = Tk()
@@ -138,30 +135,4 @@ cypherSaveButton = Button(
 )
 cypherSaveButton.pack()
 
-
 root.mainloop()
-
-
-f = open("input.txt", "r")
-
-plaintext = f.readline()
-key = f.readline()
-
-
-plaintext = "The quick brown fox jumps over the lazy dog."
-
-# key = "Alalala"
-
-key = [63,72, 79, 70, 74, 69, 69]
-
-Encrypted_message = encrypt_rc4(plaintext, key)
-print(Encrypted_message)
-
-Decrypted_message = decrypt_rc4(Encrypted_message, key)
-print(Decrypted_message)
-
-print(type(Encrypted_message))
-
-f = open("output.txt", "w", encoding="utf-8")
-f.write(Encrypted_message)
-f.close()
