@@ -1,4 +1,5 @@
 from extended_vigenere import *
+import base64
 
 def str_ascii(plaintext):
     return [ord(c) for c in plaintext]
@@ -39,12 +40,16 @@ def cipher_rc4(plaintext, key):
     encrypt_result = prga(text, S_permutations)
     cipher_result = ascii_str(encrypt_result)
 
-    return cipher_result
+    cipher_result_bytes = cipher_result.encode('utf-8').strip()
+    cipher_b64 = base64.b64encode(cipher_result_bytes)
+
+    return cipher_result, cipher_b64
 
 def encrypt_rc4(text, key):
     vigenere_encrypted = evigenere_encrypt(text, key)
-    return cipher_rc4(vigenere_encrypted, key)
+    cipher_result, cipher_b64 =  cipher_rc4(vigenere_encrypted, key)
+    return cipher_result, cipher_b64
 
 def decrypt_rc4(text, key):
-    cipher_result = cipher_rc4(text, key)
-    return evigenere_decrypt(cipher_result, key)
+    cipher_result, cipher_b64 = cipher_rc4(text, key)
+    return evigenere_decrypt(cipher_result, key), cipher_b64
