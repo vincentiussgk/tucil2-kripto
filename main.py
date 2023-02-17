@@ -121,8 +121,6 @@ cypherResultB64Textbox.pack()
 def saveResultToFile():
     f = open("cypher_result.txt", "w", encoding="utf-8")
     f.write(cypherResultTextbox.get())
-    f.write('\n')
-    f.write(cypherKeyTextbox.get())
     f.close()
 
 cypherSaveButton = Button(
